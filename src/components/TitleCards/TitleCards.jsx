@@ -23,7 +23,7 @@ const TitleCards = ({title, category}) => {
     cardsRef.current.scrollLeft += event.deltaY;
   }
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${category?category:"now_playing"}?language=en-US&page=1`, options)
+    fetch(`https://api.themoviedb.org/3/movie/${category || "now_playing"}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&language=en-US&page=1`)
       .then(res => res.json())
       .then(res => setApiData(res.results)) //results cause on the api data you can see the array fetched is under "results"
       .catch(err => console.error(err));
